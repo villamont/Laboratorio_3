@@ -13,12 +13,13 @@ def getRandom():
 
     if getResponse.status_code == 200:
         data = getResponse.json()
-        print(getResponse.status_code)
-        print("Respuesta del servidor")
+        #print(getResponse.status_code)
+        print("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
         print(data["value"])
+        print("ja ja ja ja \n--------------------------------------------------------\n")
 
     else:
-        print('Error al realizar la solicitud')
+        print('\nError al realizar la solicitud')
         print(getResponse.status_code)
 
 
@@ -30,7 +31,6 @@ def getCategories():
 
     if getCtgrs.status_code == 200:
         categories = getCtgrs.json()
-        print("\n\nEl codigo de respuesta es: ", getCtgrs.status_code)
         print("Las categorias de los chistes son: ")
         for i in categories:
             print(i)
@@ -38,8 +38,8 @@ def getCategories():
         Chiste_Categoria(opcion)
 
     else:
-        print('Error al realizar la solicitud')
-        print(getResponse.status_code)
+        print('\nError al realizar la solicitud\n')
+        
 
 def Chiste_Categoria(Option):
     url3='https://api.chucknorris.io/jokes/random?category='
@@ -50,20 +50,11 @@ def Chiste_Categoria(Option):
     
     if getchiste.status_code == 200:
         chiste=getchiste.json()
-        print("\n\n El chiste de la categoria",Option , "es: \n", chiste["value"], "\n ja ja ja ja ja")
+        print("\n\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n El chiste de la categoria",Option , "es: \n", chiste["value"], "\n ja ja ja ja ja\n--------------------------------------------------------\n\n")
 
     else:
         print("Solicitud denegada", getchiste.status_code)
 
-if __name__ == '__main__':
-    chiste = ' '
-    while chiste != 'salir':
-        chiste=int(input("Este programa le mostrara chistes de Chuck Norris \n\n Por favor escoja \n 1: Chiste de Chuck Norris Aleatorio\n 2:Chiste de Chuck Norris por categoria \n"))
-        if chiste == 1:
-            getRandom()
-        elif chiste == 2:
-            getCategories()
 
-        else:
-            print("Opcion no valida")
+    
  
