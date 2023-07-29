@@ -1,13 +1,12 @@
 ## Laboratorio 3 
 ## Consumo de una API publica de chistes de Chuck Norris
 
-
-##Funcion para solicitar un chiste aleatorio al servidor
 import requests
+
+##-------------------------Funcion para solicitar un chiste aleatorio al servidor----------------------------------
 
 url = 'https://api.chucknorris.io/jokes/random'
 
-## Usando el metodo GET
 def getRandom():
     getResponse = requests.get(url)
 
@@ -20,10 +19,10 @@ def getRandom():
 
     else:
         print('\nError al realizar la solicitud')
-        print(getResponse.status_code)
 
 
-##Obtener la lista de categoria de chistes y solicitar al usuario la categoria solicitada
+
+##---------------- Funcion para obtener la lista de categorias de chistes y solicitar al usuario la categoria solicitada ----------------------
 url1 = "https://api.chucknorris.io/jokes/categories"
 
 def getCategories():
@@ -34,26 +33,28 @@ def getCategories():
         print("Las categorias de los chistes son: ")
         for i in categories:
             print(i)
-        opcion=str(input('Por favor digite una categoria \n'))
-        Chiste_Categoria(opcion)
+        categ=str(input('Por favor digite una categoria \n'))
+        Chiste_Categoria(categ)
 
     else:
         print('\nError al realizar la solicitud\n')
         
 
-def Chiste_Categoria(Option):
+
+##------------------------Funcion para obtener el chiste segun categorias escogida por el usuario ---------------------------------
+def Chiste_Categoria(categ_chiste):
     url3='https://api.chucknorris.io/jokes/random?category='
-    arg=Option
+    category=categ_chiste
     ##uniendo la url y el parametro para completar la url de la categoria escogida por el usuario
-    url4=url3 + arg
+    url4=url3 + category
     getchiste=requests.get(url4)  
     
     if getchiste.status_code == 200:
         chiste=getchiste.json()
-        print("\n\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n El chiste de la categoria",Option , "es: \n", chiste["value"], "\n ja ja ja ja ja\n--------------------------------------------------------\n\n")
+        print("\n\nXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX\n ", chiste["value"], "\n ja ja ja ja ja\n--------------------------------------------------------\n\n")
 
     else:
-        print("Solicitud denegada", getchiste.status_code)
+        print("\nERROR ------->", categ_chiste, "no es una categoria valida, por favor escoje una opcion valida\n")
 
 
     
